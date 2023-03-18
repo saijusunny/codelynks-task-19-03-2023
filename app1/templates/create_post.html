@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .form-control{
+      background-color: transparent;
+      border-color: #17a2b8;
+      color: #17a2b8;
+    }
+    .form-control:hover{
+      background-color: transparent;
+      color: #17a2b8;
+    }
+    .form-control:active{
+      background-color: transparent;
+      color: #17a2b8;
+      border-color:red;
+    }
+    </style>
+</style>
+<div class="container-fluid p-3" style="background-color: gray; height: 700px;">
+    <div class="row">
+        <div class="col-sm-6 " style="background-color: rgb(0, 0, 0); margin: 5% auto;box-shadow: 0 0 15px 8px black;">
+            <form action="{% url 'create_posts'%}" method="POST" class="form"  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="bg-info mt-5 mb-5">
+                    <h1 style="color: #000000; text-align: center;">Create Post</h1>
+                </div>
+                
+                <fieldset id="form_fl">
+                <textarea name="des" id=""  class="form-control" placeholder="Description"></textarea>
+              
+                <select name="tag" class="form-control" id="" style="margin-top: 1%;" >
+                    <option value="Vimal">Vimal</option>
+                    {% for i in filt%}
+                    
+                    <option value="{{i.first_name}} {{i.last_name}}">{{i.first_name}} {{i.last_name}}</option>
+                    {%endfor%}
+                </select>
+                <input type="file" name='file[]' placeholder="File" style="margin-top: 1%;" class="form-control">
+                </fieldset>
+                <div class="btn btn-info mt-2"  style="color: black;" id="add_req_row" title="Add File Field">+</div><br>
+                <input type="submit"  class="btn btn-outline-info" value="POST" style="margin: 3% 40%;" >
+                
+              </form>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+            
+    $('#add_req_row').click(function(){
+     
+        $('#form_fl').append(
+            `
+        
+                <input type="file" name='file[]' placeholder="File" style="margin-top: 1%;" class="form-control">
+             
+                                            
+            `
+        );
+    });
+  });
+</script>
+
+{% endblock %}

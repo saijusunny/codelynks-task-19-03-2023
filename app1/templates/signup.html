@@ -1,0 +1,94 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+    <link rel="stylesheet" href="{% static 'css\index.css'%}">
+    <style>
+      #staff{
+        background: url("/static/image/bg-signup.jpg") 80% 50% no-repeat;
+        color: white;
+        
+    }
+    body{
+      background: url("/static/image/bg2.jpg") 0% 0% no-repeat fixed;
+      background-size: cover;
+      color: white;
+    }
+    .form-control{
+      background-color: transparent;
+      border-color: #17a2b8;
+      color: #17a2b8;
+    }
+    .form-control:hover{
+      background-color: transparent;
+      color: #17a2b8;
+    }
+    .form-control:active{
+      background-color: transparent;
+      color: #17a2b8;
+      border-color:red;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            
+            {% for message in messages %}
+            <h5 style="text-align: center;">
+              <div class="alert alert-danger">
+                {{ message}}
+                </div>
+            </h5>
+            {%endfor%}
+          
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-sm-8" style="text-align: center; margin: 7% auto; background-color: #191c24;box-shadow: 0 0 32px 40px black; " >
+            <div class="row">
+              <div class="col-sm-6" id="staff">
+                
+              </div>
+              <div class="col-sm-6" style="padding: 5%;">
+                <form action="{% url 'usercreate'%}" method="POST" class="form" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <h1 style="color: #17a2b8;">Sign Up</h1>
+                  <input type="text" name="first_name" style="margin-top: 3%;"  placeholder="First Name" class="form-control">   
+                  <input type="text" name="last_name" style="margin-top: 1%;" placeholder="Last Name" class="form-control">  
+                  <input type="text" name="username" placeholder="Username" style="margin-top: 1%;" class="form-control">  
+                  <input type="password" name="password" placeholder="Password" style="margin-top: 1%;" class="form-control">  
+                  <input type="password" name="cpassword" placeholder="Confirm Password" style="margin-top: 1%;" class="form-control">
+                  <input type="email" name="email" placeholder="Email" style="margin-top: 1%;" class="form-control">
+                  <input type="file" name="file" placeholder="File" style="margin-top: 1%;" class="form-control">
+                  <select name="role" class="form-control" id="role" style="margin-top: 1%;">
+                    <option value="Staff">Admin</option>
+                    <option value="User">User</option>
+                </select>
+                  <input type="submit"  class="btn btn-outline-info" value="Sign Up" style="margin: 3% auto;" >
+                  
+                </form>
+              </div>
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+</body>
+</html>

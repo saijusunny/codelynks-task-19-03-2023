@@ -1,0 +1,14 @@
+nav{
+    /* background-color: black; */
+    margin-right: auto;
+  }
+.navbar-nav{
+    margin-left: auto;
+  }
+*{
+    font-family: 'Times New Roman', Times, serif;
+  }
+#sai{
+  color: red;
+  text-align: center;
+}

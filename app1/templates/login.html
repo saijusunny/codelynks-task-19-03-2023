@@ -1,0 +1,89 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+    <link rel="stylesheet" href="{% static 'css\index.css'%}">
+    <style>
+      #staff{
+        background: url("/static/image/bg login.jpg") 80% 50% no-repeat;
+        background-size: cover;
+        color: white;
+        
+    }
+    body{
+      background: url("/static/image/bg3.jpg") 0% 0% no-repeat fixed;
+      background-size: cover;
+      color: white;
+    }
+    #input{
+      background-color: transparent;
+      border-color: #17a2b8;
+      color: #17a2b8;
+    }
+    #input:hover{
+      background-color: transparent;
+      color: #17a2b8;
+      border-color:red;
+    }
+    #input:active{
+      background-color: transparent;
+      color: #17a2b8;
+      border-color:red;
+    }
+    </style>
+</head>
+<body>
+
+<div class="container" >
+  <div class="row">
+    <div class="col-sm-12">
+      
+      {% for message in messages %}
+      <h5 style="text-align: center;">
+        <div class="alert alert-danger">
+          {{ message}}
+          </div>
+      </h5>
+      {%endfor%}
+    
+    </div>
+  </div>
+    
+  </div>
+    <div class="row" >
+      
+      <div class="col-sm-8" style="margin: 8% auto; background-color: #191c24; width: 100%; height: 410px;box-shadow: 0 0 32px 40px black; " > 
+        <div class="row">
+          <div class="col-sm-6" id="staff">
+
+          </div>
+          <div class="col-sm-6">
+            <form action="{% url 'adminlogin'%}" method="POST" class="form" style="margin:70px auto; text-align: center; padding: 5%;">
+              <h2 style="color: white;margin-bottom: 5%;">Login</h2>
+              {% csrf_token %}
+              <input type="text" name="username" id="input" style="margin-top: 2%;" class="form-control" placeholder="Username">
+              <input type="password" name="password" id="input" style="margin-top: 2%;" placeholder="Password" class="form-control">
+              <p style="margin-top:2%;color:#17a2b8"> Don't have an account? <a href="{% url 'signup'%}" style="text-decoration: none;"><span id="signup" style="color: red;">&nbsp Signup</span></a></p>
+              <input type="submit" class="btn btn-outline-info" value="Login" >
+            </form>
+          </div>
+        </div> 
+            
+        
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

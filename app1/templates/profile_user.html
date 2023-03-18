@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+.container-fluid{
+    background-color: black;
+    height: 800px;
+}
+.row{
+    padding: 1%;
+}
+#input{
+    background-color: transparent;
+    border-color: #17a2b8;
+    color: #17a2b8;
+}
+#input:hover{
+    background-color: transparent;
+    color: #17a2b8;
+    border-color:red;
+}
+#input:active{
+    background-color: transparent;
+    color: #17a2b8;
+    border-color:red;
+}
+
+</style>
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-sm-12" style="background-color: #191c24; text-align: center; color: white;">
+            <h1>PROFILE</h1>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+          
+          {% for message in messages %}
+          <h5 style="text-align: center;">
+            <div class="alert alert-danger">
+              {{ message}}
+              </div>
+          </h5>
+          {%endfor%}
+        
+        </div>
+      </div>
+    <div class="row">
+        
+        <div class="col-sm-12"style="background-color: #191c24; text-align: center; color: white;">
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if filt.image.url == "/media/static/image/icon.png" %}
+                    <td>
+                      <img src="{% static 'image/noimage.jpg' %}" class="w-75">
+                   </td>    
+                    {% else %}
+                    <td>
+                        
+                      <img src="{{ filt.image.url }}" class="w-75" style="border-radius: 400px;">
+                   </td>
+                   {% endif %}
+                   <!-- <div class="row">
+                    <div class="col-sm-12">
+                        <a href="" data-dismiss="modal" data-target="#crtt" data-toggle="modal"><button class="btn btn-outline-info">Change Profile</button></a>
+                    </div>
+                   </div> -->
+                </div>
+                <div class="col-sm-6">
+                    
+                        <form   method="POST" class="form" enctype="multipart/form-data" style="padding-top: 10%;">
+                            {% csrf_token %}
+                            <h1 style="color: white;">DETAILS</h1>
+                            <input type="text" id="input" name="first_name" style="margin-top: 3%;"  placeholder="First Name" class="form-control" value="{{filt.first_name}}" disabled>   
+                            <input type="text" id="input" name="last_name" style="margin-top: 1%;" placeholder="Last Name" class="form-control" value="{{filt.last_name}}" disabled>  
+                            <input type="text" id="input" name="username" placeholder="Username" style="margin-top: 1%;" class="form-control" value="{{filt.username}}" disabled>  
+                            <input type="password" id="input" name="password" placeholder="Password" style="margin-top: 1%;" class="form-control" value="**********" disabled>  
+                            <input type="password" id="input" name="cpassword" placeholder="Confirm Password" style="margin-top: 1%;" class="form-control" value="**********" >
+                            <input type="email" id="input" name="email" placeholder="Email" style="margin-top: 1%;" class="form-control" value="{{filt.email}}" disabled>
+                            
+                            
+                            <a href="#" data-dismiss="modal" data-target="#editpro" data-toggle="modal"><input type="submit"  class="btn  btn-outline-info" value="EDIT" style="margin: 3% auto;" ></a>
+                            
+                          </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+  
+    <div class="modal fade" id="editpro">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-color: #191c24; color: white">
+                <div class="modal-header">
+                    <h3 class="m-3" >EDIT SECTION</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card p-3 m-3">
+                        <form method="post" action="{% url 'editpro' filt.id %}">
+                                {% csrf_token %}
+                                <input type="text" name="first_name" style="margin-top: 3%;"  placeholder="First Name" class="form-control" value="{{filt.first_name}}">   
+                                <input type="text" name="last_name" style="margin-top: 1%;" placeholder="Last Name" class="form-control" value="{{filt.last_name}}">  
+                                <input type="text" name="username" placeholder="Username" style="margin-top: 1%;" class="form-control" value="{{filt.username}}">  
+                                <input type="password" id="pass" name="password" placeholder="Password" style="margin-top: 1%;" class="form-control" >  
+                                <input type="password" id="cpass" name="cpassword" placeholder="Confirm Password" style="margin-top: 1%;" class="form-control" >
+                                <input type="email" name="email" placeholder="Email" style="margin-top: 1%;" class="form-control" value="{{filt.email}}"><br><br>
+                            
+                                
+                                <button type="submit"  class="btn  btn-outline-info" style="margin-left: 42%;">Update and
+                                    Close
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="view">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-color: #191c24; color: white">
+                <div class="modal-header">
+                    <h3 class="m-3" >EDIT SECTION</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card p-3 m-3">
+                        <form method="post" action="{% url 'editpro' filt.id %}">
+                                {% csrf_token %}
+                                <input type="text" name="first_name" style="margin-top: 3%;"  placeholder="First Name" value="{{filt.first_name}} "class="form-control">   
+                                <input type="text" name="last_name" style="margin-top: 1%;" placeholder="Last Name" class="form-control" value="{{filt.last_name}}">  
+                                <input type="text" name="username" placeholder="Username" style="margin-top: 1%;" class="form-control" value="{{filt.username}}">  
+                                <input type="password" name="password" placeholder="Password" style="margin-top: 1%;" class="form-control">  
+                                <input type="password" name="cpassword" placeholder="Confirm Password" style="margin-top: 1%;" class="form-control">
+                                <input type="email" name="email" placeholder="Email" style="margin-top: 1%;" class="form-control" value="{{filt.email}}">
+                    
+                                <button type="submit"  class="btn  btn-outline-info" style="margin-left: 42%;">Update and
+                                    Close
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="crtt">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-color: #191c24; color: white">
+                <div class="modal-header">
+                    <h3 class="m-3">Update Profile Pic</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card p-3 m-3">
+                        <form method="post" action="{% url 'up_pro' filt.id %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    
+                                        <input type="file" name="file" placeholder="File" style="margin-top: 1%;" class="form-control" > 
+                                    </div>
+                                </div>
+                               
+                            
+                                
+                                <button type="submit" class="btn btn-outline-info" style="margin-left: 42%;">Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
