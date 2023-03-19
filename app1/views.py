@@ -9,7 +9,7 @@ import os
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 
-# Create your views here.
+
 def login(request):
     return render(request,'login.html')
 def signup(request):
@@ -236,7 +236,7 @@ def up_pro(request,id):
 def feeds(request):
     ids=request.user.id
     filt=Staff.objects.get(id=ids)
-    feed=post.objects.filter(user=ids)
+    feed=post.objects.filter(user=ids).order_by('-id')
     lk = liked.objects.all()
     dk = disliked.objects.all()
     fil=files.objects.filter(user=ids)
@@ -270,7 +270,7 @@ def view_like(request,id):
 def feeds_user(request):
     ids=request.user.id
     filt=Staff.objects.get(id=ids)
-    feed=post.objects.all()
+    feed=post.objects.all().order_by('-id')
     lk = liked.objects.filter(user=ids)
     dk = disliked.objects.filter(user=ids)
     fil=files.objects.all()

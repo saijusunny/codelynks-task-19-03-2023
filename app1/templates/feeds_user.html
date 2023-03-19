@@ -139,7 +139,7 @@
               {{filt.first_name}} {{filt.last_name}}&#8250;&#8250;&#8250;{{i.tag}}
             </div>
             <div class="card-body">
-              <div style="text-align: left; padding: 30px; font-size: 18px;">
+              <div style="text-align: justify; padding: 10px; font-size: 18px;">
                 <p class="card-title">{{i.description}}</p>
               </div>
               <div class="slideshow">
@@ -156,14 +156,12 @@
                 </div>
               </div>
               <div class="row">
-                
-         
-                
-                    <div class="col-sm-6 btn  btn-outline-info" onclick="like('{{i.id}}')">
-                      <a  data-toggle="modal" href="#like" style="text-decoration: none;color: white;"> {{i.like}} &nbsp Like</a>
-                    </div>
-             
-                
+              
+              
+              <div class="col-sm-6 btn  btn-outline-info" onclick="like('{{i.id}}')">
+                <a  data-toggle="modal" href="#like" style="text-decoration: none;color: white;"> {{i.like}} &nbsp Like</a>
+              </div>
+              
                 <div class="col-sm-6 btn  btn-outline-info" onclick="dislike('{{i.id}}')">
                   <a  data-toggle="modal" href="#dislike" style="text-decoration: none; color: white;">{{i.dislike}} &nbsp Dislike</a>
                 </div>
